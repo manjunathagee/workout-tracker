@@ -1,6 +1,7 @@
 import Dexie, { type Table } from 'dexie';
 import type { User } from '../types/auth';
 import type { Workout, Exercise, Set, ExerciseType } from '../types/workout';
+import type { Goal } from '../types/goals';
 
 export class WorkoutDatabase extends Dexie {
   users!: Table<User, string>;
@@ -8,16 +9,18 @@ export class WorkoutDatabase extends Dexie {
   exercises!: Table<Exercise, string>;
   sets!: Table<Set, string>;
   exerciseTypes!: Table<ExerciseType, string>;
+  goals!: Table<Goal, string>;
 
   constructor() {
     super('WorkoutTrackerDB');
     
-    this.version(1).stores({
+    this.version(2).stores({
       users: 'id, email, role, createdAt',
       workouts: 'id, userId, date, createdAt, isTemplate',
       exercises: 'id, workoutId, exerciseType',
       sets: 'id, exerciseId',
-      exerciseTypes: 'id, name, category, isCustom'
+      exerciseTypes: 'id, name, category, isCustom',
+      goals: 'id, userId, type, isCompleted, targetDate'
     });
 
     this.on('ready', this.seedData);

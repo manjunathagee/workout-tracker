@@ -5,13 +5,11 @@ import { Layout } from './components/common/Layout';
 import { AuthPage } from './pages/AuthPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { WorkoutPage } from './pages/WorkoutPage';
+import { AnalyticsPage } from './pages/AnalyticsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { AdminPage } from './pages/AdminPage';
 import { useUiStore } from './stores/uiStore';
 import { initializeTheme } from './utils/theme';
-
-// Placeholder components for other pages
-const AnalyticsPage = () => <div className="text-gray-900 dark:text-white">Analytics Page - Coming in Sprint 3</div>;
 
 function App() {
   const { theme, setTheme } = useUiStore();
