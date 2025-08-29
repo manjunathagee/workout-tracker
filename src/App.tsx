@@ -4,13 +4,13 @@ import { Toaster } from 'react-hot-toast';
 import { Layout } from './components/common/Layout';
 import { AuthPage } from './pages/AuthPage';
 import { DashboardPage } from './pages/DashboardPage';
+import { WorkoutPage } from './pages/WorkoutPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { AdminPage } from './pages/AdminPage';
 import { useUiStore } from './stores/uiStore';
 import { initializeTheme } from './utils/theme';
 
 // Placeholder components for other pages
-const WorkoutsPage = () => <div className="text-gray-900 dark:text-white">Workouts Page - Coming in Sprint 2</div>;
 const AnalyticsPage = () => <div className="text-gray-900 dark:text-white">Analytics Page - Coming in Sprint 3</div>;
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Navigate to="/dashboard" replace />} />
             <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="workouts" element={<WorkoutsPage />} />
+            <Route path="workouts" element={<WorkoutPage />} />
             <Route path="analytics" element={<AnalyticsPage />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="admin" element={<AdminPage />} />
