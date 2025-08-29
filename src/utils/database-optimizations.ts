@@ -141,7 +141,7 @@ export class DatabaseOptimizations {
     const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
     
     const incompleteWorkouts = await db.workouts
-      .where('completedAt').equals(null as any)
+      .where('completedAt').equals(undefined)
       .and(w => !w.isTemplate && w.createdAt < sevenDaysAgo)
       .primaryKeys();
 
@@ -257,7 +257,7 @@ export class DatabaseOptimizations {
 
 // Memory cache for frequently accessed data
 class QueryCache {
-  private cache = new Map<string, { data: any; timestamp: number }>();
+  private cache = new Map<string, { data: unknown; timestamp: number }>();
   private ttl = 5 * 60 * 1000; // 5 minutes TTL
 
   get<T>(key: string): T | null {
@@ -269,7 +269,7 @@ class QueryCache {
       return null;
     }
 
-    return item.data;
+    return item.data as T;
   }
 
   set<T>(key: string, data: T): void {
